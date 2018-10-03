@@ -10,12 +10,12 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView imgProfile;
-    EditText edtEmail;
-    EditText edtPassword;
-    Button btnSignUp;
-    Button btnSignIn;
-    Button btnGoogle,btnFb,btnTwitter;
+    private ImageView imgProfile;
+    private EditText edtEmail;
+    private EditText edtPassword;
+    private Button btnSignUp;
+    private Button btnSignIn;
+    private Button btnGoogle,btnFb,btnTwitter;
 
 
     @Override
