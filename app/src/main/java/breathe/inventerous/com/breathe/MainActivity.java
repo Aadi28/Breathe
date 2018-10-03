@@ -29,5 +29,6 @@ public class MainActivity extends AppCompatActivity {
         btnGoogle=(Button) findViewById(R.id.btnGoogle);
         btnFb=(Button) findViewById(R.id.btnFb);
         btnTwitter=(Button) findViewById(R.id.btnTwitter);
+
     }
 }
