@@ -18,7 +18,9 @@
         </activity>
         <activity android:name=".SignUp" />
         <activity android:name=".AccDetails" />
-        <activity android:name=".Actual_Interface"></activity>
+        <activity android:name=".Actual_Interface" />
+        <activity android:name=".forecast" />
+        <activity android:name=".location"></activity>
     </application>
 
 </manifest>
