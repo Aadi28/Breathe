@@ -19,10 +19,9 @@ public class SignUp extends AppCompatActivity {
         edtPhNo = (EditText) findViewById(R.id.edtPhNo);
         edtPwd = (EditText) findViewById(R.id.edtPwd);
         edtRePwd = (EditText) findViewById(R.id.edtRePwd);
-     
-       btnsignup2 = (Button) findViewById(R.id.btnsignup2);
+        btnsignup2 = (Button) findViewById(R.id.btnsignup2);
    
     }   
     
     }
-}
+
