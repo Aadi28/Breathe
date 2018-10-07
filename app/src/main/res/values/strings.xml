@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Breathe</string>
+    <string name="facebook_app_id">486380775192915</string>
+    <string name="fb_login_protocol_scheme">fb486380775192915</string>
+
 </resources>
