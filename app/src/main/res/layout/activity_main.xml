@@ -124,7 +124,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:orientation="horizontal">
@@ -152,7 +152,8 @@
             android:layout_weight="33">
         </com.google.android.gms.common.SignInButton>
 
-        <Button
+
+        <com.facebook.login.widget.LoginButton
             android:id="@+id/btnFb"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -161,7 +162,18 @@
             android:layout_marginRight="2dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="33"
-            android:text="Facebook" />
+            android:text="Facebook"/>
+
+        <!--<Button
+            android:id="@+id/btnFb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="33"
+            android:text="Facebook" />-->
 
         <Button
             android:id="@+id/btnTwitter"
