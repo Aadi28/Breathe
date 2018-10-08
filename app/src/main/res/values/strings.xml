@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Breathe</string>
+
     <string name="facebook_app_id">486380775192915</string>
     <string name="fb_login_protocol_scheme">fb486380775192915</string>
+
+    <string name="title_activity_Location_">Map</string>
+
+    <string name="button_radius">Radius</string>
+    <string name="button_gradient">Gradient</string>
+    <string name="button_opacity">Opacity</string>
 
 </resources>
