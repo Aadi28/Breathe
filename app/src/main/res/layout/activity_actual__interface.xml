@@ -16,7 +16,8 @@
 
              <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="200dp"
+                 android:id="@+id/heatMaps">
                  <include layout="@layout/maps_layout"></include>
             </LinearLayout>
             <LinearLayout

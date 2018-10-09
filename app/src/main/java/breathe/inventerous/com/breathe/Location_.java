@@ -9,10 +9,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.TileOverlayOptions;
+import com.google.maps.android.heatmaps.HeatmapTileProvider;
 
 public class Location_ extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private HeatmapTileProvider mHeatmapTileProvider;
+    private TileOverlayOptions mTileOverlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,10 @@ public class Location_ extends FragmentActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        mHeatmapTileProvider=new HeatmapTileProvider.Builder().data(mDataItems).build();
+        mTileOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mHeatmapTileProvider));
+
     }
 
 
