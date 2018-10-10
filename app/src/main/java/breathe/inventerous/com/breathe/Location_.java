@@ -9,14 +9,42 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Location_ extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private HeatmapTileProvider mHeatmapTileProvider;
-    private TileOverlayOptions mTileOverlay;
+    private TileOverlay mTileOverlay;
+
+
+
+    private HashMap<String, DataSet> mLists = new HashMap<String, DataSet>();
+
+
+    private class DataSet {
+        private ArrayList<LatLng> mDataset;
+        private String mUrl;
+
+        public DataSet(ArrayList<LatLng> dataSet, String url) {
+            this.mDataset = dataSet;
+            this.mUrl = url;
+        }
+
+        public ArrayList<LatLng> getData() {
+            return mDataset;
+        }
+
+        public String getUrl() {
+            return mUrl;
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +55,8 @@ public class Location_ extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        mHeatmapTileProvider=new HeatmapTileProvider.Builder().data(mDataItems).build();
+        mHeatmapTileProvider=new HeatmapTileProvider.Builder().data(mLists.get(getString(R.string.police_stations)).getData()).build();
         mTileOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mHeatmapTileProvider));
-
     }
 
 
