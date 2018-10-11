@@ -51,57 +51,66 @@ public class IDactivity extends AppCompatActivity {
         //             ->readings child according to date may be
         //                   ->time to time readings
 
-        myId=edtID.getText().toString();
-
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(myId)){
-                    //id is already present so go to sign in page
-                    Intent toSignIn=new Intent(IDactivity.this,MainActivity.class);
-                    toSignIn.putExtra(REF_To_ID_CHILD,dataSnapshot.child(myId).toString());
-                    startActivity(toSignIn);
-                    finish();
-
-                    //now we have the reference to myID child in sign in from there we can see already saved location
-                }
-
-                else{
-                    //we dont have child an d it has to be created
-                    DatabaseReference idChild=databaseReference.child(myId);
-                    //we will pass on these reference for myId child to sign up
-                    //after creating the other fields
-                    //later we will add values to these fields
-                    idChild.child("Location");
-                    idChild.child("Email");
-                    idChild.child("Password");
-                    idChild.child("Readings");
-
-                    Intent toSignUp=new Intent(IDactivity.this,SignUp.class);
-                    toSignUp.putExtra(REF_To_ID_CHILD,idChild.toString());
-                    startActivity(toSignUp);
-                    finish();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                myId=edtID.getText().toString();
 
-                DatabaseReference idChild=databaseReference.child(myId);
-                //we will pass on these reference for further use to new intent
-                DatabaseReference locationChild=idChild.child("Location");
-                DatabaseReference emailChild=idChild.child("Email");
-                DatabaseReference passwordChild=idChild.child("Password");
-                DatabaseReference readingsChild=idChild.child("Readings");
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.hasChild(myId)){
+                            //id is already present so go to sign in page
+                            Intent toSignIn=new Intent(IDactivity.this,MainActivity.class);
+                            toSignIn.putExtra(REF_To_ID_CHILD,dataSnapshot.child(myId).toString());
+                            startActivity(toSignIn);
+                            finish();
+
+                            //now we have the reference to myID child in sign in from there we can see already saved location
+                        }
+
+                        else{
+                            //we dont have child an d it has to be created
+
+                            // DatabaseReference theParent=myRef.child(edtBoxerId.getText().toString());
+                            DatabaseReference idChild=databaseReference.child(myId);
+                            //we will pass on these reference for myId child to sign up
+                            //after creating the other fields
+                            //later we will add values to these fields
+                            idChild.child("Location").setValue("No location yet");
+//                            idChild.child("Email");
+//                            idChild.child("Password");
+//                            idChild.child("Readings");
+
+                            Intent toSignUp=new Intent(IDactivity.this,SignUp.class);
+                            toSignUp.putExtra(REF_To_ID_CHILD,idChild.toString());
+                            startActivity(toSignUp);
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });
+
+//        btnSubmit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                DatabaseReference idChild=databaseReference.child(myId);
+//                //we will pass on these reference for further use to new intent
+//                DatabaseReference locationChild=idChild.child("Location");
+//                DatabaseReference emailChild=idChild.child("Email");
+//                DatabaseReference passwordChild=idChild.child("Password");
+//                DatabaseReference readingsChild=idChild.child("Readings");
+//
+//            }
+//        });
     }
 }

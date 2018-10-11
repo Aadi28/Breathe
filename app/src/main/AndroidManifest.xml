@@ -26,7 +26,7 @@
         <activity android:name=".Actual_Interface" />
         <activity android:name=".forecast" />
         <activity android:name=".Location_" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -48,7 +48,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".ShopNow"></activity>
     </application>
 
 </manifest>
