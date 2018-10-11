@@ -36,8 +36,23 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
+
+////////TASKS IN THIS ACTIVITY
+///SIGN IN ACTIVITY
+
+
+//gets the database reference for idChild
+//checks the entered Email and password existing at firebase database
+//goes to LocationDetection(in actual interface only) after Email and Password match which is location(function btnSignIn)
+//also we can do google sign in and Fb sign in
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,22 +69,35 @@ public class MainActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN=1;//for google sign in
     private static final int FB_SIGN_IN=2;//for fb sign in
     private GoogleSignInClient mGoogleSignInClient;
-    FirebaseAuth.AuthStateListener authStateListener;
+//    FirebaseAuth.AuthStateListener authStateListener;
     CallbackManager mCallbackManager;
 
+    private DatabaseReference idChild;
+    private String idChildString;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        firebaseAuth.addAuthStateListener(authStateListener);
-    }
+    private static final String REF_To_ID_CHILD="RefToIDChild";
+    private FirebaseDatabase firebaseDatabase;
+
+    private String myEmail,myPassword;
+
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        firebaseAuth.addAuthStateListener(authStateListener);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar); //main_activity.java
+
+
+        //Taking data from previous activity
+        Intent fromIDactivity=new Intent();
+        idChildString=fromIDactivity.getStringExtra(REF_To_ID_CHILD);
+        firebaseDatabase=FirebaseDatabase.getInstance();
+        idChild=firebaseDatabase.getReferenceFromUrl(idChildString);
 
 
         imgProfile=(ImageView) findViewById(R.id.imgProfile);
@@ -77,10 +105,15 @@ public class MainActivity extends AppCompatActivity {
         edtPassword=(EditText) findViewById(R.id.edtPassword);
         btnSignIn=(Button) findViewById(R.id.btnSignIn);
         //btnSignUp=(Button) findViewById(R.id.btnSignUp);
+
+
+        //TO BE DONE YET
+        //create our own custom buttons
         btnGoogle=(SignInButton) findViewById(R.id.btnGoogle);
         btnFb=(LoginButton) findViewById(R.id.btnFb);
 
         firebaseAuth=FirebaseAuth.getInstance();
+
 
         GoogleSignInOptions gso= new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -90,40 +123,72 @@ public class MainActivity extends AppCompatActivity {
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(MainActivity.this, gso);
 
-        authStateListener=new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                //if user already signed in then go to actual interface directly
-                //can also use authStateListener
-                if(firebaseAuth.getCurrentUser()!=null){
-                    Intent intentToMain=new Intent(MainActivity.this,Actual_Interface.class);
-                    startActivity(intentToMain);
-                    finish();
-                }
-                else{
-                    Toast.makeText(MainActivity.this, "no user yet", Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
-
-
-        //going to sign up page but will sign up in sign up activity
-//        btnSignUp.setOnClickListener(new View.OnClickListener() {
+//        authStateListener=new FirebaseAuth.AuthStateListener() {
 //            @Override
-//            public void onClick(View v) {
-//                Intent intent1=new Intent(MainActivity.this,SignUp.class);
-//                startActivity(intent1);
-//                finish();
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                //if user already signed in then go to actual interface directly
+//                //can also use authStateListener
+//                if(firebaseAuth.getCurrentUser()!=null){
+//                    Intent intentToMain=new Intent(MainActivity.this,Actual_Interface.class);
+//                    startActivity(intentToMain);
+//                    finish();
+//                }
+//                else{
+//                    Toast.makeText(MainActivity.this, "no user yet", Toast.LENGTH_SHORT).show();
+//                }
 //            }
-//        });
+//        };
+
+
 
         //signing in with Email and password
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String myEmail= edtEmail.getText().toString();
-                String myPassword=edtPassword.getText().toString();
+                 myEmail= edtEmail.getText().toString();
+                 myPassword=edtPassword.getText().toString();
+
+                //checking the firebase if email and password match
+
+                idChild.child("E-MAIL").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot:dataSnapshot.getChildren()){
+                            if(snapshot.getValue()==myEmail){
+                                //email matches
+                                Toast.makeText(MainActivity.this, "email matches", Toast.LENGTH_SHORT).show();
+                                //check the password which is child of Email
+                                if(snapshot.child("PASSWORD").getValue()==myPassword){
+                                    //yes we have verified so go to location
+                                    Toast.makeText(MainActivity.this, "Password matches", Toast.LENGTH_SHORT).show();
+                                    Intent toLocation=new Intent(MainActivity.this,Actual_Interface.class);
+
+                                    //send the refernce further
+                                    toLocation.putExtra(REF_To_ID_CHILD,idChildString);
+                                    startActivity(toLocation);
+                                    finish();
+
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                idChild.child("E-MAIL").setValue(myEmail);
+//                idChild.child("PASSWORD").setValue(myPassword);
+
+                Toast.makeText(MainActivity.this, "Data sent!", Toast.LENGTH_SHORT).show();
                 signInWithEmailAndPassword(myEmail,myPassword);
+
+                //moving to new activity Actual_interface and passing refernce to idChild further
+                Intent toMainPage=new Intent(MainActivity.this,Actual_Interface.class);
+                toMainPage.putExtra(REF_To_ID_CHILD,idChildString);
+                startActivity(toMainPage);
+                finish();
             }
         });
 
@@ -171,27 +236,10 @@ public class MainActivity extends AppCompatActivity {
 
         // ...// till here
 
-        //using custom button for fb
-//        mCallbackManager=CallbackManager.Factory.create();
-//        btnFb.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                LoginManager.getInstance()
-//                        .logInWithReadPermissions(MainActivity.this,Arrays.asList("email", "public_profile"));
-//                LoginManager.getInstance().registerCallback(
-//                        //use btnFb.registerCallback as shown above
-//                        //copy the same code
-//                );
-//            }
-//        });
+
 
     }
 
-    //configuring google sign in
-//    GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//            .requestIdToken(getString(R.string.default_web_client_id))
-//            .requestEmail()
-//            .build();
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();

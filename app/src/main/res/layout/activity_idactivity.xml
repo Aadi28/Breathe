@@ -4,46 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IDactivity"
-    android:orientation="vertical">
+    android:background="@drawable/breathe_background"
+    android:orientation="vertical"
+    tools:context=".IDactivity">
 
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/breathe_logo_trans"/>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter the ID as specified on your module"
-        android:textSize="40sp"
+        android:layout_margin="5dp"
+        android:background="#50ffffff"
         android:gravity="center"
-        android:layout_margin="20dp"/>
+        android:text="Enter the ID as specified on your module"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/edtID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:ems="10"
         android:hint="Enter ID here"
-        android:inputType="textPersonName"
-        android:layout_margin="5dp"/>
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        android:text="Submit" />
 
     <Button
         android:id="@+id/btnHeatmap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View heat map"
-        android:layout_margin="10dp" />
+        android:text="View heat map" />
 
     <Button
         android:id="@+id/btnBuy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buy Now"
-        android:layout_margin="10dp"/>
+        android:text="Buy Now" />
 </LinearLayout>
