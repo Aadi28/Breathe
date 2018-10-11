@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IDactivity"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter the ID as specified on your module"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:layout_margin="20dp"/>
+
+    <EditText
+        android:id="@+id/edtID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter ID here"
+        android:inputType="textPersonName"
+        android:layout_margin="5dp"/>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:id="@+id/btnHeatmap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View heat map"
+        android:layout_margin="10dp" />
+
+    <Button
+        android:id="@+id/btnBuy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buy Now"
+        android:layout_margin="10dp"/>
+</LinearLayout>

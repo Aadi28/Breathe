@@ -44,12 +44,11 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgProfile;
     private EditText edtEmail;
     private EditText edtPassword;
-    private Button btnSignUp;
+    //private Button btnSignUp;
     private Button btnSignIn;
     private SignInButton btnGoogle;
     private LoginButton btnFb;
 
-    private Button btnTwitter;
     private FirebaseAuth firebaseAuth;
 
     private static final int RC_SIGN_IN=1;//for google sign in
@@ -77,10 +76,9 @@ public class MainActivity extends AppCompatActivity {
         edtEmail=(EditText) findViewById(R.id.edtEmail);
         edtPassword=(EditText) findViewById(R.id.edtPassword);
         btnSignIn=(Button) findViewById(R.id.btnSignIn);
-        btnSignUp=(Button) findViewById(R.id.btnSignUp);
+        //btnSignUp=(Button) findViewById(R.id.btnSignUp);
         btnGoogle=(SignInButton) findViewById(R.id.btnGoogle);
         btnFb=(LoginButton) findViewById(R.id.btnFb);
-        btnTwitter=(Button) findViewById(R.id.btnTwitter);
 
         firebaseAuth=FirebaseAuth.getInstance();
 
@@ -110,14 +108,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         //going to sign up page but will sign up in sign up activity
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1=new Intent(MainActivity.this,SignUp.class);
-                startActivity(intent1);
-                finish();
-            }
-        });
+//        btnSignUp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent1=new Intent(MainActivity.this,SignUp.class);
+//                startActivity(intent1);
+//                finish();
+//            }
+//        });
 
         //signing in with Email and password
         btnSignIn.setOnClickListener(new View.OnClickListener() {
