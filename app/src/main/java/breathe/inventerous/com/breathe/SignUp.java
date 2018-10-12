@@ -15,16 +15,41 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+////////TASKS FOR THIS ACTIVITY
+//asks details and send to firebase at idChild
+//NAME for name
+//E-MAIL for email
+//PASSWORD for password
+//PHONE for phone
+//after sign up move to LocationDetection(in actual interface)
+
 
 public class SignUp extends AppCompatActivity {
     private EditText edtName,edtEmail,edtPhNo,edtPwd,edtRePwd;
     private Button btnsignup2;
     private FirebaseAuth firebaseAuth;
 
+    private DatabaseReference idChild;
+    private String idChildString;
+
+    private static final String REF_To_ID_CHILD="RefToIDChild";
+    private FirebaseDatabase firebaseDatabase;
+
+    private String myEmail,myPassword,myPhone,myRePassword,myName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        Intent fromIDactivity=new Intent();
+        idChildString=fromIDactivity.getStringExtra(REF_To_ID_CHILD);
+        firebaseDatabase=FirebaseDatabase.getInstance();
+        idChild=firebaseDatabase.getReferenceFromUrl(idChildString);
+
 
         edtName = (EditText) findViewById(R.id.edtName);
         edtEmail = (EditText) findViewById(R.id.edtEmail);
@@ -35,13 +60,34 @@ public class SignUp extends AppCompatActivity {
 
         firebaseAuth=FirebaseAuth.getInstance();
 
+        //takes data from edit text and send to database
+        //signup function called here
 
         btnsignup2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(SignUp.this,Actual_Interface.class);
-                startActivity(intent);
-                finish();
+
+                myEmail=edtEmail.getText().toString();
+                myPassword=edtPwd.getText().toString();
+                myName=edtName.getText().toString();
+                myPhone=edtPhNo.getText().toString();
+                myRePassword=edtRePwd.getText().toString();
+
+                if(myPassword!=myRePassword){
+                    Toast.makeText(SignUp.this, "Password entered does not match!Try again.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    idChild.child("NAME").setValue(myName);
+                    DatabaseReference idEmail=idChild.child("E-MAIL");
+                    idEmail.setValue(myEmail);
+                    idEmail.child("PASSWORD").setValue(myPassword);
+                    idChild.child("PHONE").setValue(myPhone);
+                    signUpUserEmailAndPassword(myEmail,myPassword);
+
+                    Intent intent = new Intent(SignUp.this, Actual_Interface.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
@@ -56,7 +102,7 @@ public class SignUp extends AppCompatActivity {
                         }
                         else{
                             Toast.makeText(SignUp.this, "Successfully Signed Up!", Toast.LENGTH_SHORT).show();
-                            //from here we have to go to actual Interface
+                            //from here we have to go to location
                         }
                     }
                 });
