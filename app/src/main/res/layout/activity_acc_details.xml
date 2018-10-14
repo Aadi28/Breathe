@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AccDetails"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/bgg"
+    >
     <!-- No ID tags added, no backend done here..kudos -->
     <ScrollView
         android:layout_width="match_parent"

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="#87CEFA">
+
+    android:background="@drawable/bgg">
 
 
 
