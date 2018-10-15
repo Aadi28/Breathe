@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".IDactivity"
 
-    android:background="@drawable/bgg">
+    android:background="@drawable/bac">
 
     <ImageView
         android:layout_width="200dp"
@@ -23,7 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="#50ffffff"
+        android:background="@drawable/text_view"
+
         android:gravity="center"
         android:text="Enter the ID as specified on your module"
         android:textSize="20sp" />
@@ -39,10 +40,11 @@
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Submit" />
+        android:layout_gravity="center_horizontal"
+        android:text="Submit"
+        android:theme="?attr/imageButtonStyle" />
 
     <Button
         android:id="@+id/btnHeatmap"
