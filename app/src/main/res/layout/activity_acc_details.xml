@@ -54,7 +54,8 @@
                     android:id="@+id/txtName"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="70" />
+                    android:layout_weight="70"
+                    android:background="@drawable/text_view"/>
             </LinearLayout>
 
             <LinearLayout
@@ -75,7 +76,8 @@
                     android:id="@+id/txtEmailId"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="70" />
+                    android:layout_weight="70"
+                    android:background="@drawable/text_view"/>
             </LinearLayout>
 
             <LinearLayout
@@ -96,7 +98,8 @@
                     android:id="@+id/txtLocation"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="70" />
+                    android:layout_weight="70"
+                    android:background="@drawable/text_view"/>
             </LinearLayout>
 
             <LinearLayout
@@ -109,13 +112,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
-                    android:text="Phone No." />
+                    android:text="Phone No."
+                    android:background="@drawable/text_view"/>
 
                 <TextView
                     android:id="@+id/txtPhoneNo"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="70"
+                    android:background="@drawable/text_view"
                     />
             </LinearLayout>
         </LinearLayout>

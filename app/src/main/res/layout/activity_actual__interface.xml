@@ -7,47 +7,72 @@
     tools:context=".Actual_Interface"
     android:orientation="vertical"
     android:background="@drawable/bac">
-        <ScrollView
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-             <LinearLayout
-              android:layout_width="match_parent"
-                android:layout_height="200dp">
-            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"></LinearLayout>
+
             <LinearLayout
 
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
-            </LinearLayout>
+                android:layout_height="200dp"></LinearLayout>
+
             <Button
                 android:id="@+id/btnSearchLoc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="50"
+                android:background="@drawable/btn_sign_up_sign_in"
+                android:gravity="center"
                 android:text="Different Location"
-                android:gravity="center"/>
+                android:textColor="#fff" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <Button
                     android:id="@+id/btnForecast"
                     android:layout_width="0dp"
-                    android:layout_weight="50"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="50"
+                    android:background="@drawable/btn_sign_up_sign_in"
+
                     android:text="Forecast"
-                    android:layout_margin="10dp"/>
+                    android:textColor="#fff" />
+
                 <Button
                     android:id="@+id/btnShop"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_weight="50"
+                    android:background="@drawable/btn_sign_up_sign_in"
+
                     android:text="Shop Now"
-                    android:layout_margin="10dp"/>
+                    android:textColor="#fff" />
             </LinearLayout>
         </LinearLayout>
 

@@ -118,7 +118,13 @@
                 android:layout_gravity="center_horizontal"
                 android:text="Sign-Up"
                 android:id="@+id/btnsignup2"
-                android:layout_margin="20dp"/>
+                android:layout_margin="20dp"
+
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="50"
+                android:textColor="#fff"
+                android:background="@drawable/btn_sign_up_sign_in"/>
 
         </LinearLayout>
     </ScrollView>
